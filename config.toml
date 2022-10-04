@@ -1,0 +1,5 @@
+baseURL = 'https://larsworks.nl/'
+languageCode = 'en'
+title = 'LarsWorks'
+disableKinds = ["taxonomy", "term"]
+disableHugoGeneratorInject = true

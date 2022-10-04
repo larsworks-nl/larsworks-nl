@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html {{ with .Site.LanguageCode }}lang="{{ . }}"{{ end }}>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ .Title }}</title>
+  <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ end }}{{ end }}">
+  <meta name="author" content="Lars van der Vliet">
+
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:description" content="A simple HTML5 Template for new projects.">
+  <meta property="og:image" content="/images/apple-touch-icon.png">
+
+  <link rel="icon" href="/images/favicon.ico" sizes="any"><!-- 32×32 -->
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png"><!-- 180×180 -->
+  <link rel="manifest" href="/images/manifest.webmanifest">
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap" as="style">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap">
+
+  {{ $style := resources.Get "styles/styles.scss" | resources.ToCSS (dict "outputStyle" "compressed") | fingerprint}}
+  <link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}">
+</head>
+
+{{ $background := resources.Get "images/background.jpg" }}
+
+<body>
+  <main class="main">
+    <picture class="background" aria-hidden="true">
+      <source srcset="{{ ($background.Resize "1920x webp").RelPermalink }}" media="(min-width: 1280px)" type="image/webp" />
+      <source srcset="{{ ($background.Resize "1920x").RelPermalink }}" media="(min-width: 1280px)" />
+      <source srcset="{{ ($background.Resize "1280x webp").RelPermalink }}" media="(min-width: 768px)" type="image/webp" />
+      <source srcset="{{ ($background.Resize "1280x").RelPermalink }}" media="(min-width: 768px)" />
+      <source srcset="{{ ($background.Resize "800x webp").RelPermalink }}" type="image/webp" />
+      <source srcset="{{ ($background.Resize "800x").RelPermalink }}" />
+      <img src="{{ ($background.Resize "1920x  ").RelPermalink }}" alt="Background image" />
+    </picture>
+
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  <footer class="footer">
+    &copy; Lars van der Vliet | Background &copy; Delta-Phot Luchtfotografie
+  </footer>
+</body>
+
+</html>

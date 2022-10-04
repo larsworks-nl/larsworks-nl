@@ -1,0 +1,65 @@
+.card {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 40rem;
+    padding: 1rem;
+    margin: 1rem;
+    gap: 1rem;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+
+    @media (min-width: 768px) {
+        grid-template-columns: 25% 1fr;
+        padding: 2rem;
+        gap: 4rem;
+    }
+}
+
+.card__image {
+    border-radius: 50%;
+    align-self: center;
+    max-width: 50%;
+    margin: 0 auto;
+
+    @media (min-width: 768px) {
+        max-width: 100%;
+    }
+}
+
+.card__details {
+    text-align: center;
+
+    @media (min-width: 768px) {
+        text-align: left;
+    }
+}
+
+.card__details h2 {
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.card__details p:first-of-type {
+    margin-top: 1rem;
+}
+
+.card__contact {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        gap: 1rem;
+
+        &:not(:last-of-type) {
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    svg {
+        width: 1.5rem;
+    }
+}
